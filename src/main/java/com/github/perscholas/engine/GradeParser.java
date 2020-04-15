@@ -22,19 +22,6 @@ public class GradeParser {
         this.excelSource = excelSource;
     }
 
-    /**
-     * Decouples construction from file-creation
-     */
-    private void init() {
-        this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(DirectoryReference.TARGETDIRECTORY
-                .getFileFromDirectory(new StringBuilder()
-                        .append("PARSED-")
-                        .append("java-developer-philly-rubric-template_")
-                        .append(System.nanoTime())
-                        .append(".xlsx")
-                        .toString()));
-    }
-
     public void parseToExcel() {
         parseToExcel(DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(
                 new StringBuilder()
