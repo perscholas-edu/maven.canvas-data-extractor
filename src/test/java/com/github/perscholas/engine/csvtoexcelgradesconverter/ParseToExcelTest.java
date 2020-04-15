@@ -24,9 +24,16 @@ public class ParseToExcelTest {
         File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("grades.csv");
         File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
         File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
+        File excelFileDestination = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(
+                new StringBuilder()
+                        .append("PARSED-")
+                        .append("java-developer-philly-rubric-template_")
+                        .append(System.nanoTime())
+                        .append(".xlsx")
+                        .toString());
 
         CsvToExcelGradesConverter csvToExcelGradesConverter = new CsvToExcelGradesConverter(source, destination);
-        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone);
+        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone, excelFileDestination);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();

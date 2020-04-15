@@ -7,7 +7,7 @@ public class MyObjectTest {
     @Test
     public void testRun() { // TODO
         // Given
-        MyObject myObject = new MyObject();
+        Runnable myObject = new GradeParserRunner();
 
         // when
         myObject.run();

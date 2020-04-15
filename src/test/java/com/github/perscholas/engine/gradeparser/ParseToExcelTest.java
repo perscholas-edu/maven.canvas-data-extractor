@@ -36,11 +36,18 @@ public class ParseToExcelTest {
     public void test() {
         FileWrapper csvSource = getCsvSource();
         File csvDestination = getCsvDestination();
-        CsvParser csvParser = new CsvParser(csvSource.getFile(), csvDestination);
         File spreadSheetFileSource = resourceDir.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
+        File excelFileDestination = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(
+                new StringBuilder()
+                        .append("PARSED-")
+                        .append("java-developer-philly-rubric-template_")
+                        .append(System.nanoTime())
+                        .append(".xlsx")
+                        .toString());
+        CsvParser csvParser = new CsvParser(csvSource.getFile(), csvDestination);
         ExcelSpreadSheetWorkBookFile excelSource = new ExcelSpreadSheetWorkBookFile(spreadSheetFileSource);
         GradeParser gradeParser = new GradeParser(excelSource, csvParser);
-        gradeParser.parseToExcel();
+        gradeParser.parseToExcel(excelFileDestination);
         ExcelSpreadSheetWorkBookFile excelDestination = gradeParser.getExcelSpreadSheetWorkBookDestination();
     }
 }

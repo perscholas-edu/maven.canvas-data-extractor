@@ -2,7 +2,7 @@ package com.github.perscholas;
 
 public class MainApplication {
     public static void main(String[] args) {
-        Runnable myObject = new MyObject();
+        Runnable myObject = new GradeParserRunner();
         myObject.run();
     }
 }

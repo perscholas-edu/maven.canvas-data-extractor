@@ -5,7 +5,6 @@ import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.excel.tabledata.dataarray.ExcelSpreadSheetColumn;
 import com.github.perscholas.excel.tabledata.dataarray.ExcelSpreadSheetRow;
-import com.github.perscholas.utils.io.DirectoryReference;
 import com.github.perscholas.utils.StringEvaluator;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -14,18 +13,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyObject implements Runnable {
-    public void run() {
-        tryLater();
+public class GradeParserConfigurator implements Runnable {
+    private File csvSource;
+    private File csvDestination;
+    private File excelFileToClone;
+    private File excelFileDestination;
+
+    public GradeParserConfigurator(File csvSource, File csvDestination, File excelFileToClone, File excelFileDestination) {
+        this.csvSource = csvSource;
+        this.csvDestination = csvDestination;
+        this.excelFileToClone = excelFileToClone;
+        this.excelFileDestination = excelFileDestination;
     }
 
-    private void tryLater() {
-        File source = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("grades.csv");
-        File destination = DirectoryReference.TARGETDIRECTORY.getDuplicateFile(source.getName());
-        File excelFileToClone = DirectoryReference.RESOURCEDIRECTORY.getFileFromDirectory("java-developer-philly-rubric-template.xlsx");
-
-        CsvToExcelGradesConverter csvToExcelGradesConverter = new CsvToExcelGradesConverter(source, destination);
-        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone);
+    public void run() {
+        CsvToExcelGradesConverter csvToExcelGradesConverter = new CsvToExcelGradesConverter(csvSource, csvDestination);
+        ExcelSpreadSheetWorkBookFile destinationWorkbook = csvToExcelGradesConverter.parseToExcel(excelFileToClone, excelFileDestination);
 
         ExcelSpreadSheet gradesCSV = destinationWorkbook.getExcelSpreadSheetByIndex(0).get();
         ExcelSpreadSheetRow csvHeaders = gradesCSV.getColumnHeaders();
@@ -44,7 +47,7 @@ public class MyObject implements Runnable {
         }
         destinationWorkbook.flush();
         System.out.println(csvHeaderToExcelSpreadSheetMap
-        .toString()
-        .replaceAll("\n\n\n", ""));
+                .toString()
+                .replaceAll("\n\n\n", ""));
     }
 }

@@ -22,16 +22,6 @@ public class GradeParser {
         this.excelSource = excelSource;
     }
 
-    public void parseToExcel() {
-        parseToExcel(DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(
-                new StringBuilder()
-                        .append("PARSED-")
-                        .append("java-developer-philly-rubric-template_")
-                        .append(System.nanoTime())
-                        .append(".xlsx")
-                        .toString()));
-    }
-
     public void parseToExcel(File outputPath) {
         this.excelSpreadSheetWorkBookDestination = excelSource.copyTo(outputPath);
         String newSheetName = "Grades Parsed From Canvas";
