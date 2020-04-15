@@ -1,4 +1,4 @@
-package com.github.perscholas.tests.stringevaluator;
+package com.github.perscholas.utils.stringevaluator;
 
 import com.github.perscholas.utils.StringEvaluator;
 import org.junit.Assert;

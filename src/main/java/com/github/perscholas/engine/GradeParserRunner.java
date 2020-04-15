@@ -1,4 +1,4 @@
-package com.github.perscholas;
+package com.github.perscholas.engine;
 
 import com.github.perscholas.utils.io.DirectoryReference;
 

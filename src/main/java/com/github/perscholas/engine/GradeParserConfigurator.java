@@ -1,6 +1,5 @@
-package com.github.perscholas;
+package com.github.perscholas.engine;
 
-import com.github.perscholas.engine.CsvToExcelGradesConverter;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.excel.tabledata.dataarray.ExcelSpreadSheetColumn;

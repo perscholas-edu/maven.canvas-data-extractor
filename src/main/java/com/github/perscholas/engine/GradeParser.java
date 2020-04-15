@@ -3,7 +3,6 @@ package com.github.perscholas.engine;
 import com.github.perscholas.engine.csv.CsvParser;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
-import com.github.perscholas.utils.io.DirectoryReference;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;

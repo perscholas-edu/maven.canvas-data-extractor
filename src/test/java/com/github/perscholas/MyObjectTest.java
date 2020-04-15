@@ -1,5 +1,6 @@
 package com.github.perscholas;
 
+import com.github.perscholas.engine.GradeParserRunner;
 import org.junit.Assert;
 import org.junit.Test;
 
