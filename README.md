@@ -2,7 +2,7 @@
 * **Objective** - The objective of this application is to create an automated process to read grades from canvas, export them to a spreadsheet, and format them in the appropriate reporting template. 
 
 ## Grade Extraction Procedure
-1. Download grades as from canvas as `.csv`
+1. Download grades from canvas as `.csv`
 2. Input `grades.csv` file into the application
 3. The application makes a copy of the `grade-reporting-template.xlsx` spreadsheet-workbook named `grade-reporting-template.copy.xlsx` to ensure it does not modify the original template.
 4. The application reads `grades.csv` and outputs a more neatly formatted `grades-formatted.csv`
