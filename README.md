@@ -20,7 +20,21 @@
     * For example, if the application receives the grades as a `json`, it will have to convert the `json` to `csv`. The rest of the pipeline should remain untouched and still stable. 
 
 ## How to use
-* This application can be used by ...
+
+## How to Download
+
+#### Part 1 - Downloading the project
+* To download this project as a `.zip` file, click on the `Download as Zip` button found to the right of the page.
+
+
+#### Part 2 - Unzipping the project
+* Navigate to the location of the newly zipped project, and unzip the application.
+
+#### Part 3 - Opening the project
+* Open the application using a Java IDE (IntelliJ, Eclipse, NetBeans, etc.)
+
+#### Part 4 - Running the project
+* From a Java IDE, run the `MainApplication` and follow the prompts.
 
 
 ### Future work
