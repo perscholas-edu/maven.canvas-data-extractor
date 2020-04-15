@@ -21,8 +21,6 @@
 
 ## How to use
 
-## How to Download
-
 #### Part 1 - Downloading the project
 * To download this project as a `.zip` file, click on the `Download as Zip` button found to the right of the page.
 
