@@ -19,14 +19,6 @@ public class StringEvaluator {
         return new JaroWinklerDistance().apply(baseString, stringToCompareAgainst);
     }
 
-    public Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
-        Map<String, Double> map = new HashMap<>();
-        for (String stringToCompareAgainst : stringsToCompareAgainst) {
-            map.put(stringToCompareAgainst, getSimilarity(stringToCompareAgainst));
-        }
-        return map;
-    }
-
     public String getMostSimilar(List<String> stringsToCompareAgainst) {
         Map<String, Double> similarityMap = getSimilarityMap(stringsToCompareAgainst);
         Collection<Double> values = similarityMap.values();
@@ -41,6 +33,14 @@ public class StringEvaluator {
             }
         }
         return null;
+    }
+
+    private Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
+        Map<String, Double> map = new HashMap<>();
+        for (String stringToCompareAgainst : stringsToCompareAgainst) {
+            map.put(stringToCompareAgainst, getSimilarity(stringToCompareAgainst));
+        }
+        return map;
     }
 
 }
