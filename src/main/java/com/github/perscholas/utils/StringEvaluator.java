@@ -35,7 +35,7 @@ public class StringEvaluator {
         return null;
     }
 
-    private Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
+    public Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
         Map<String, Double> map = new HashMap<>();
         for (String stringToCompareAgainst : stringsToCompareAgainst) {
             map.put(stringToCompareAgainst, getSimilarity(stringToCompareAgainst));
