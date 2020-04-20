@@ -39,10 +39,12 @@ public class StringEvaluator {
     public Map<String, Double> getSimilarityMap(List<String> stringsToCompareAgainst) {
         Map<String, Double> map = new HashMap<>();
         for (String stringToCompareAgainst : stringsToCompareAgainst) {
-            Double similarityValue = similarityScorer.apply(baseString, stringToCompareAgainst);
-            map.put(stringToCompareAgainst, similarityValue);
+            map.put(stringToCompareAgainst, getSimilarity(stringToCompareAgainst));
         }
         return map;
     }
 
+    public Double getSimilarity(String stringToCompareAgainst) {
+        return similarityScorer.apply(baseString, stringToCompareAgainst);
+    }
 }
