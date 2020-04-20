@@ -10,15 +10,15 @@ import java.io.File;
 /**
  * Created by leon on 4/20/2020.
  */
-public class CsvToExcelSpreadSheet {
+public class CsvToExcelSpreadSheetParser {
     private CsvReader csvReader;
     private ExcelSpreadSheetWorkBookFileInterface workBookDestination;
 
-    public CsvToExcelSpreadSheet(File csvFileToBeCopied, File workBookDestination) {
+    public CsvToExcelSpreadSheetParser(File csvFileToBeCopied, File workBookDestination) {
         this(new CsvReader(csvFileToBeCopied), new ExcelSpreadSheetWorkBookFile(workBookDestination));
     }
 
-    public CsvToExcelSpreadSheet(CsvReader csvReader, ExcelSpreadSheetWorkBookFileInterface workBookDestination) {
+    public CsvToExcelSpreadSheetParser(CsvReader csvReader, ExcelSpreadSheetWorkBookFileInterface workBookDestination) {
         this.csvReader = csvReader;
         this.workBookDestination = workBookDestination;
     }
@@ -27,7 +27,7 @@ public class CsvToExcelSpreadSheet {
         return workBookDestination;
     }
 
-    public ExcelSpreadSheet addSheetToWorkBook(String sheetName) {
+    public ExcelSpreadSheet parseToSheetInWorkBook(String sheetName) {
         ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(workBookDestination
                 .getSheetByName(sheetName)
                 .orElse(workBookDestination

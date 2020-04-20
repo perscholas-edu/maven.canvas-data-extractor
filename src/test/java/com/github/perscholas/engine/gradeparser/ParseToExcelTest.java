@@ -1,6 +1,6 @@
 package com.github.perscholas.engine.gradeparser;
 
-import com.github.perscholas.engine.csv.CsvParser;
+import com.github.perscholas.engine.csv.CsvSanitizer;
 import com.github.perscholas.engine.GradeParser;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.utils.io.DirectoryReference;
@@ -44,9 +44,9 @@ public class ParseToExcelTest {
                         .append(System.nanoTime())
                         .append(".xlsx")
                         .toString());
-        CsvParser csvParser = new CsvParser(csvSource.getFile(), csvDestination);
+        CsvSanitizer csvSanitizer = new CsvSanitizer(csvSource.getFile(), csvDestination);
         ExcelSpreadSheetWorkBookFile excelSource = new ExcelSpreadSheetWorkBookFile(spreadSheetFileSource);
-        GradeParser gradeParser = new GradeParser(excelSource, csvParser);
+        GradeParser gradeParser = new GradeParser(excelSource, csvSanitizer);
         gradeParser.parseToExcel(excelFileDestination);
         ExcelSpreadSheetWorkBookFile excelDestination = gradeParser.getExcelSpreadSheetWorkBookDestination();
     }

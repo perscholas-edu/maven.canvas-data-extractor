@@ -1,6 +1,6 @@
 package com.github.perscholas.engine;
 
-import com.github.perscholas.engine.csv.CsvParser;
+import com.github.perscholas.engine.csv.CsvSanitizer;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.utils.io.DirectoryReference;
 
@@ -26,9 +26,9 @@ public class CsvToExcelGradesConverter {
                             .append(".xlsx")
                             .toString());
         }
-        CsvParser csvParser = new CsvParser(source, destination);
+        CsvSanitizer csvSanitizer = new CsvSanitizer(source, destination);
         ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBook = new ExcelSpreadSheetWorkBookFile(excelSpreadSheetFileToParse);
-        GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvParser);
+        GradeParser gradeParser = new GradeParser(excelSpreadSheetWorkBook, csvSanitizer);
         gradeParser.parseToExcel(excelSpreadSheetOutputDestination);
         return gradeParser.getExcelSpreadSheetWorkBookDestination();
     }

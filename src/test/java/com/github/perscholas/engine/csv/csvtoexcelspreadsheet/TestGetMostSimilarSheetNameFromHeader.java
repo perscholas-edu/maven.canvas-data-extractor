@@ -1,7 +1,7 @@
 package com.github.perscholas.engine.csv.csvtoexcelspreadsheet;
 
 import com.github.perscholas.engine.csv.CsvReader;
-import com.github.perscholas.engine.csv.CsvToExcelSpreadSheet;
+import com.github.perscholas.engine.csv.CsvToExcelSpreadSheetParser;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBook;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
@@ -34,10 +34,10 @@ public class TestGetMostSimilarSheetNameFromHeader {
 
     private void test(CsvReader csvReader, ExcelSpreadSheetWorkBookFileInterface workBookFileDestination) {
         try {
-            CsvToExcelSpreadSheet csvToExcelSpreadSheet = new CsvToExcelSpreadSheet(csvReader, workBookFileDestination);
+            CsvToExcelSpreadSheetParser csvToExcelSpreadSheet = new CsvToExcelSpreadSheetParser(csvReader, workBookFileDestination);
 
             // when
-            ExcelSpreadSheet sheet = csvToExcelSpreadSheet.addSheetToWorkBook("New Sheet");
+            ExcelSpreadSheet sheet = csvToExcelSpreadSheet.parseToSheetInWorkBook("New Sheet");
             ExcelSpreadSheetWorkBook workBook = new ExcelSpreadSheetWorkBook(sheet.getWorkBook());
             ExcelSpreadSheetRow headers = sheet.getColumnHeaders();
             for (Cell headerCell : headers.getData()) {

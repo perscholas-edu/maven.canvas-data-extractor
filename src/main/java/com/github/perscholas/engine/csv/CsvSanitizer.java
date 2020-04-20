@@ -22,56 +22,34 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
-@Deprecated
-public class CsvParser {
-    private final CSVWriter writer;
+public class CsvSanitizer {
+    private final CsvWriter writer;
     private final CsvReader csvReader;
     private List<List<String>> rows;
 
-    public CsvParser(File source, File destination) {
-        try {
-            this.csvReader = new CsvReader(source);
-            this.rows = csvReader.getRows();
-            this.writer = new CSVWriter(new FileWriter(destination.getAbsolutePath()));
-        } catch (IOException e) {
-            throw new Error(e);
-        }
+    public CsvSanitizer(File source, File destination) {
+        this.csvReader = new CsvReader(source);
+        this.rows = csvReader.getRows();
+        this.writer = new CsvWriter(destination);
     }
 
-    // TODO
+    // TODO - Implement sanitize
     // (Column1: `Student`).delete()
     // (Column2: `ID`).shiftToColumn(1)
     // (Column3: `SIS User ID`).delete()
     // (Column4: `SIS Login ID`).shiftToColumn(2)
     // (Column5: `Section`).delete()
-    // (Column6:
-    public List<List<String>> parseRows() {
-        System.out.println(getStudents());
-        write();
+    public List<List<String>> getSanitizedData() {
+        // TODO - Implement sanitization
+        List<Student> students = new StudentParser(csvReader.getRows()).getStudents();
+        System.out.println(students);
         return rows;
     }
 
-
-    public List<Student> getStudents() {
-        return new StudentParser(csvReader.getRows()).getStudents();
-    }
-
-
-    public void write() {
-        writer.writeAll(standardize());
-    }
-
-    private List<String[]> standardize() {
-        List<String[]> result = new ArrayList<>();
-        for (List<String> column : csvReader.getRows()) {
-            result.add(column.toArray(new String[0]));
-        }
-        return result;
-    }
-
-    public void parseToSheet(Sheet newSheet) {
+    public void sanitizeAndParseToSheet(Sheet newSheet) {
         ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(newSheet);
-        List<List<String>> rows = this.parseRows();
+        List<List<String>> rows = this.getSanitizedData();
+        writer.writeList(getSanitizedData());
         for (int rowNumber = 0; rowNumber < rows.size(); rowNumber++) {
             List<String> stringListData = rows.get(rowNumber);
             List<Cell> cellListData = new ArrayList<>();
