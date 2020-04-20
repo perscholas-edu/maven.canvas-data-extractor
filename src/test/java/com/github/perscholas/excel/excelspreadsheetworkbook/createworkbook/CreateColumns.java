@@ -3,6 +3,7 @@ package com.github.perscholas.excel.excelspreadsheetworkbook.createworkbook;
 import com.github.perscholas.excel.ExcelSpreadSheetFileFactory;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ public class CreateColumns {
     @Test
     public void test() {
         ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetFileFactory.getNewExcelWorkBookFile();
+        Assert.assertTrue(workBookFile.getSheetsFromWorkBook().isEmpty()); // ensure new excel file is empty
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
         sheet.addColumns(
                 Arrays.asList("ID", "0", "1", "2", "3"),

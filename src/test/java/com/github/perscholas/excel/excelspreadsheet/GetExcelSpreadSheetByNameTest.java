@@ -16,7 +16,7 @@ public class GetExcelSpreadSheetByNameTest {
         Sheet expected = workBook.createExcelSpreadSheetByName(sheetName).getSheet();
 
         // when
-        Sheet actual = workBook.getExcelSpreadSheetByName(sheetName).get();
+        Sheet actual = workBook.getSheetByName(sheetName).get();
 
         Assert.assertEquals(expected, actual);
         workBook.close();

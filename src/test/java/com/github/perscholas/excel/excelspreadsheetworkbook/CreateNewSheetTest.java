@@ -10,7 +10,7 @@ public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
         ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
-        Assert.assertFalse(workBook.getExcelSpreadSheetByName(sheetName).isPresent());
+        Assert.assertFalse(workBook.getSheetByName(sheetName).isPresent());
 
         // when
         ExcelSpreadSheet newSheet = workBook.createNewExcelSpreadSheet(sheetName);

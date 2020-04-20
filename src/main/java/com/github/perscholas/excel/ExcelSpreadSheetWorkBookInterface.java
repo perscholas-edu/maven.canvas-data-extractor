@@ -1,6 +1,8 @@
 package com.github.perscholas.excel;
 
+import com.github.perscholas.excel.tabledata.dataarray.ExcelSpreadSheetRow;
 import com.github.perscholas.utils.StringEvaluator;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -36,6 +38,15 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
     @Override
     default Iterator<ExcelSpreadSheet> iterator() {
         return this.getExcelSpreadSheets().iterator();
+    }
+
+    default void copySpreadSheet(ExcelSpreadSheet source) {
+        ExcelSpreadSheet destination = this.createNewExcelSpreadSheet(source.getName());
+        for (ExcelSpreadSheetRow row : source.getRows()) {
+            for (Cell cell : row) {
+                destination.addCell(cell, cell.getRowIndex(), cell.getColumnIndex());
+            }
+        }
     }
 
     default List<Sheet> getSheetsFromWorkBook() {
@@ -83,18 +94,22 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
     }
 
     default ExcelSpreadSheet createExcelSpreadSheetByName(String sheetName) {
-        return getExcelSpreadSheetByName(sheetName)
+        return getSheetByName(sheetName)
                 .or(() -> Optional.of(getWorkBook().createSheet(sheetName)))
                 .map(ExcelSpreadSheet::new)
                 .get();
 
     }
 
-    default Optional<Sheet> getExcelSpreadSheetByName(String sheetName) {
+    default Optional<Sheet> getSheetByName(String sheetName) {
         return getSheetsFromWorkBook()
                 .stream()
                 .filter(sheet -> sheet.getSheetName().equals(sheetName))
                 .findFirst();
+    }
+
+    default Optional<ExcelSpreadSheet> getExcelSpreadSheetByName(String sheetName) {
+        return Optional.of(new ExcelSpreadSheet(getSheetByName(sheetName).get()));
     }
 
     default Optional<ExcelSpreadSheet> getExcelSpreadSheetByIndex(Integer index) {
