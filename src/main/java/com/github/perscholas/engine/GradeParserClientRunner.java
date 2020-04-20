@@ -8,6 +8,7 @@ import java.io.File;
 /**
  * Created by leon on 4/15/2020.
  */ // TODO - Replace this class with a web client
+@Deprecated
 public class GradeParserClientRunner implements Runnable {
 
     private File currentDirectory;

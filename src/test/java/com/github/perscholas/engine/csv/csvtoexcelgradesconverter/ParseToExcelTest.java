@@ -1,4 +1,4 @@
-package com.github.perscholas.engine.csvtoexcelgradesconverter;
+package com.github.perscholas.engine.csv.csvtoexcelgradesconverter;
 
 import com.github.perscholas.engine.CsvToExcelGradesConverter;
 import com.github.perscholas.excel.ExcelSpreadSheet;

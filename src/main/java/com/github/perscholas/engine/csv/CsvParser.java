@@ -22,6 +22,7 @@ import java.util.List;
  * 2. converts ugly CSV data to pretty CSV
  * (this process is later followed by extracting data from the pretty CSV to a XLSX file)
  */
+@Deprecated
 public class CsvParser {
     private final CSVWriter writer;
     private final CsvReader csvReader;

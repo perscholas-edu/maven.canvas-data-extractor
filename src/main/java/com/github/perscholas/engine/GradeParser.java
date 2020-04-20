@@ -11,6 +11,7 @@ import java.io.File;
  * @author leonhunter
  * @created 01/24/2020 - 9:58 PM
  */
+@Deprecated
 public class GradeParser {
     private ExcelSpreadSheetWorkBookFile excelSpreadSheetWorkBookDestination;
     private final CsvParser csvParser;

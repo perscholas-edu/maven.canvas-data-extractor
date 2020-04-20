@@ -6,7 +6,7 @@ import com.github.perscholas.utils.io.DirectoryReference;
 
 import java.io.File;
 
-
+@Deprecated
 public class CsvToExcelGradesConverter {
     private File source;
     private File destination;
