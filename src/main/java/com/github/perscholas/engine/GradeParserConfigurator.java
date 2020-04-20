@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated
 public class GradeParserConfigurator implements Runnable {
     private File csvSource;
     private File csvDestination;

@@ -7,6 +7,7 @@ import java.io.File;
 /**
  * Created by leon on 4/15/2020.
  */
+@Deprecated
 public class GradeParserRunner implements Runnable {
     @Override
     public void run() {
