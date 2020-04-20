@@ -1,28 +1,25 @@
-package com.github.perscholas.engine;
+package com.github.perscholas.engine.csv;
 
-import com.github.perscholas.engine.csv.CsvReader;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFileInterface;
-import com.github.perscholas.excel.tabledata.dataarray.ExcelSpreadSheetRow;
-import com.github.perscholas.utils.io.DirectoryReference;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by leon on 4/20/2020.
  */
 public class CsvToExcelSpreadSheet {
-    private File csvFileSource;
+    private CsvReader csvReader;
     private ExcelSpreadSheetWorkBookFileInterface workBookDestination;
 
-    public CsvToExcelSpreadSheet(File csvFileToBeCopied, ExcelSpreadSheetWorkBookFileInterface workBookDestination) {
-        this.csvFileSource = csvFileToBeCopied;
+    public CsvToExcelSpreadSheet(File csvFileToBeCopied, File workBookDestination) {
+        this(new CsvReader(csvFileToBeCopied), new ExcelSpreadSheetWorkBookFile(workBookDestination));
+    }
+
+    public CsvToExcelSpreadSheet(CsvReader csvReader, ExcelSpreadSheetWorkBookFileInterface workBookDestination) {
+        this.csvReader = csvReader;
         this.workBookDestination = workBookDestination;
     }
 
@@ -31,7 +28,6 @@ public class CsvToExcelSpreadSheet {
     }
 
     public ExcelSpreadSheet addSheetToWorkBook(String sheetName) {
-        CsvReader csvReader = new CsvReader(csvFileSource);
         ExcelSpreadSheet newExcelSpreadSheet = new ExcelSpreadSheet(workBookDestination
                 .getSheetByName(sheetName)
                 .orElse(workBookDestination
@@ -39,7 +35,6 @@ public class CsvToExcelSpreadSheet {
                         .getSheet()));
         newExcelSpreadSheet.addRows(csvReader.getRows());
         Sheet newSheet = newExcelSpreadSheet.getSheet();
-        workBookDestination.addSheet(newSheet);
         workBookDestination.setSheetOrder(sheetName, 0);
         workBookDestination.setActive(newSheet);
         workBookDestination.flush();
