@@ -1,7 +1,7 @@
 package com.github.perscholas.excel.excelspreadsheetworkbook;
 
 import com.github.perscholas.excel.ExcelSpreadSheet;
-import com.github.perscholas.excel.ExcelSpreadSheetFileFactory;
+import com.github.perscholas.utils.ExcelSpreadSheetWorkBookFileFactory;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBook;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.excel.tabledata.cell.ExcelSpreadSheetCell;
@@ -43,8 +43,8 @@ public class CopySheetFromWorkBookTest {
 
     @Test
     public void test1() {
-        ExcelSpreadSheetWorkBookFile srcWorkBookFile = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
-        ExcelSpreadSheetWorkBookFile desWorkBookFile = ExcelSpreadSheetFileFactory.getNewExcelWorkBookFile();
+        ExcelSpreadSheetWorkBookFile srcWorkBookFile = ExcelSpreadSheetWorkBookFileFactory.getCopyOfRubricTemplateWorkBookFile();
+        ExcelSpreadSheetWorkBookFile desWorkBookFile = ExcelSpreadSheetWorkBookFileFactory.getNewExcelWorkBookFile();
         test(srcWorkBookFile, desWorkBookFile);
     }
 }

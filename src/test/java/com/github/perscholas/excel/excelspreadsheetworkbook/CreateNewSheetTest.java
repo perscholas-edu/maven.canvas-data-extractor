@@ -1,6 +1,6 @@
 package com.github.perscholas.excel.excelspreadsheetworkbook;
 
-import com.github.perscholas.excel.ExcelSpreadSheetFileFactory;
+import com.github.perscholas.utils.ExcelSpreadSheetWorkBookFileFactory;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.junit.Test;
 public class CreateNewSheetTest {
     // given
     private void test(String sheetName) {
-        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetWorkBookFileFactory.getCopyOfRubricTemplateWorkBookFile();
         Assert.assertFalse(workBook.getSheetByName(sheetName).isPresent());
 
         // when

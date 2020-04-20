@@ -9,10 +9,10 @@ import java.util.List;
  * @created 01/25/2020 - 12:00 AM
  * used to invert axes of a table
  */
-public class Transposer<SomeType> {
+public class MatrixManipulator<SomeType> {
     private List<List<SomeType>> table;
 
-    public Transposer(List<List<SomeType>> table) {
+    public MatrixManipulator(List<List<SomeType>> table) {
         this.table = table;
     }
 
@@ -33,6 +33,15 @@ public class Transposer<SomeType> {
         List<List<T>> result = new ArrayList<>();
         for (T[] row : rows) {
             result.add(Arrays.asList(row));
+        }
+        return result;
+    }
+
+
+    public static <T> List<T[]> standardize(List<List<T>> data) {
+        List<T[]> result = new ArrayList<>();
+        for (List<T> column : data) {
+            result.add(column.toArray((T[])(new Object[0])));
         }
         return result;
     }

@@ -1,11 +1,12 @@
-package com.github.perscholas.excel;
+package com.github.perscholas.utils;
 
+import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import com.github.perscholas.utils.io.DirectoryReference;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ExcelSpreadSheetFileFactory {
+public class ExcelSpreadSheetWorkBookFileFactory {
     public static ExcelSpreadSheetWorkBookFile getCopyOfRubricTemplateWorkBookFile() {
         String fileName = "java-developer-philly-rubric-template";
         String fileExtension = ".xlsx";
@@ -24,12 +25,15 @@ public class ExcelSpreadSheetFileFactory {
     }
 
     public static ExcelSpreadSheetWorkBookFile getNewExcelWorkBookFile() {
-        // given
-        File file = DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(new StringBuilder()
+        return getNewExcelWorkBookFile(DirectoryReference.TARGETDIRECTORY.getFileFromDirectory(new StringBuilder()
                 .append("test")
                 .append(System.nanoTime())
                 .append(".xlsx")
-                .toString());
+                .toString()));
+    }
+
+    public static ExcelSpreadSheetWorkBookFile getNewExcelWorkBookFile(File file) {
+        // given
         if (!file.exists()) {
             try {
                 file.createNewFile();

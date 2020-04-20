@@ -1,6 +1,6 @@
 package com.github.perscholas.excel.excelspreadsheet;
 
-import com.github.perscholas.excel.ExcelSpreadSheetFileFactory;
+import com.github.perscholas.utils.ExcelSpreadSheetWorkBookFileFactory;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Assert;
@@ -12,8 +12,8 @@ import org.junit.Test;
 public class GetExcelSpreadSheetByNameTest {
     private void test(String sheetName) {
         // given
-        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetFileFactory.getCopyOfRubricTemplateWorkBookFile();
-        Sheet expected = workBook.createExcelSpreadSheetByName(sheetName).getSheet();
+        ExcelSpreadSheetWorkBookFile workBook = ExcelSpreadSheetWorkBookFileFactory.getCopyOfRubricTemplateWorkBookFile();
+        Sheet expected = workBook.getExcelSpreadSheetByNameOrCreateNew(sheetName).getSheet();
 
         // when
         Sheet actual = workBook.getSheetByName(sheetName).get();

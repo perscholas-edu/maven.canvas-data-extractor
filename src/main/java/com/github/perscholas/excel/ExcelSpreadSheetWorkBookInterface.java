@@ -27,6 +27,13 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
         return new ExcelSpreadSheet(getWorkBook().createSheet(name));
     }
 
+    default ExcelSpreadSheet getExcelSpreadSheetByNameOrCreateNew(String sheetName) {
+        return getSheetByName(sheetName)
+                .or(() -> Optional.of(getWorkBook().createSheet(sheetName)))
+                .map(ExcelSpreadSheet::new)
+                .get();
+    }
+
     default void setSheetOrder(String sheetName, Integer newSheetIndex) {
         getWorkBook().setSheetOrder(sheetName, newSheetIndex);
     }
@@ -91,14 +98,6 @@ public interface ExcelSpreadSheetWorkBookInterface extends Iterable<ExcelSpreadS
                 .stream()
                 .map(ExcelSpreadSheet::new)
                 .collect(Collectors.toList());
-    }
-
-    default ExcelSpreadSheet createExcelSpreadSheetByName(String sheetName) {
-        return getSheetByName(sheetName)
-                .or(() -> Optional.of(getWorkBook().createSheet(sheetName)))
-                .map(ExcelSpreadSheet::new)
-                .get();
-
     }
 
     default Optional<Sheet> getSheetByName(String sheetName) {

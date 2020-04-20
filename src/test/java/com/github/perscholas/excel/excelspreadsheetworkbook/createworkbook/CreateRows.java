@@ -1,6 +1,6 @@
 package com.github.perscholas.excel.excelspreadsheetworkbook.createworkbook;
 
-import com.github.perscholas.excel.ExcelSpreadSheetFileFactory;
+import com.github.perscholas.utils.ExcelSpreadSheetWorkBookFileFactory;
 import com.github.perscholas.excel.ExcelSpreadSheet;
 import com.github.perscholas.excel.ExcelSpreadSheetWorkBookFile;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ public class CreateRows {
     @Test
     public void test1() {
         // given
-        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetFileFactory.getNewExcelWorkBookFile();
+        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetWorkBookFileFactory.getNewExcelWorkBookFile();
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
 
         // when
@@ -45,7 +45,7 @@ public class CreateRows {
     @Test
     public void test2() {
         // given
-        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetFileFactory.getNewExcelWorkBookFile();
+        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetWorkBookFileFactory.getNewExcelWorkBookFile();
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
 
         // when
@@ -104,7 +104,7 @@ public class CreateRows {
     @Test
     public void test3() {
         // given
-        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetFileFactory.getNewExcelWorkBookFile();
+        ExcelSpreadSheetWorkBookFile workBookFile = ExcelSpreadSheetWorkBookFileFactory.getNewExcelWorkBookFile();
         ExcelSpreadSheet sheet = workBookFile.createNewExcelSpreadSheet(Long.toHexString(System.nanoTime()));
 
         // when

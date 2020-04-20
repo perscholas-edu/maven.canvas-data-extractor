@@ -1,6 +1,6 @@
 package com.github.perscholas.engine.csv;
 
-import com.github.perscholas.utils.Transposer;
+import com.github.perscholas.utils.MatrixManipulator;
 import com.opencsv.CSVReader;
 
 import java.io.File;
@@ -20,7 +20,7 @@ public class CsvReader {
     public CsvReader(File source) {
         try {
             CSVReader reader = new CSVReader(new FileReader(source.getAbsolutePath()));
-            this.rows = Transposer.normalize(reader.readAll());
+            this.rows = MatrixManipulator.normalize(reader.readAll());
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -35,13 +35,13 @@ public class CsvReader {
     }
 
     public List<String> getColumn(Integer columnNumber) {
-        return new Transposer<>(getRows()).transpose().get(columnNumber);
+        return new MatrixManipulator<>(getRows()).transpose().get(columnNumber);
     }
 
     public List<List<String>> getColumns() {
         List<List<String>> result = new ArrayList<>();
         for (List<String> row : getRows()) {
-            List<String> column = new Transposer<>(Arrays.asList(row)).transpose().get(0);
+            List<String> column = new MatrixManipulator<>(Arrays.asList(row)).transpose().get(0);
             result.add(column);
         }
         return result;
